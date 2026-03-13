@@ -49,13 +49,7 @@ export default function SignUp() {
     }
   }
 
-  const handleGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback` }
-    })
-  }
-
+  
   return (
     <div style={styles.wrap}>
       <div style={styles.card}>
@@ -66,12 +60,7 @@ export default function SignUp() {
 
         {message && <div style={styles.alert}>{message}</div>}
 
-        <button style={styles.googleBtn} onClick={handleGoogle}>
-          <GoogleIcon />
-          Continue with Google
-        </button>
-
-        <div style={styles.divider}><span>or sign up with email</span></div>
+        
 
         <div style={styles.row}>
           <Field label="First Name" placeholder="Adaora" value={form.firstName} onChange={v => update('firstName', v)} error={errors.firstName} />
@@ -120,16 +109,7 @@ function Field({ label, placeholder, type='text', value, onChange, error, hint }
   )
 }
 
-function GoogleIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" style={{ marginRight: 8 }}>
-      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-    </svg>
-  )
-}
+
 
 const styles = {
   wrap:{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'#080C0A', padding:'2rem 1rem' },
@@ -140,8 +120,6 @@ const styles = {
   title:{ fontFamily:'sans-serif', fontWeight:800, fontSize:'1.8rem', textAlign:'center', color:'#E8F5E9', marginBottom:4 },
   sub:{ textAlign:'center', fontSize:'.82rem', color:'#5A7A5E', marginBottom:'1.5rem' },
   alert:{ background:'rgba(0,230,118,.1)', border:'1px solid rgba(0,230,118,.3)', borderRadius:8, padding:'.7rem 1rem', fontSize:'.8rem', color:'#00E676', marginBottom:'1rem' },
-  googleBtn:{ width:'100%', display:'flex', alignItems:'center', justifyContent:'center', background:'#0D1410', border:'1px solid #1E2E20', borderRadius:10, padding:'.85rem', cursor:'pointer', fontSize:'.88rem', fontWeight:700, color:'#E8F5E9', marginBottom:'1.2rem' },
-  divider:{ display:'flex', alignItems:'center', gap:'.8rem', marginBottom:'1.2rem', color:'#5A7A5E', fontSize:'.68rem', fontWeight:700, letterSpacing:2, textTransform:'uppercase' },
   row:{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'.8rem' },
   fieldGroup:{ marginBottom:'1rem' },
   label:{ display:'block', fontSize:'.72rem', fontWeight:700, letterSpacing:1, textTransform:'uppercase', color:'#5A7A5E', marginBottom:'.4rem' },
